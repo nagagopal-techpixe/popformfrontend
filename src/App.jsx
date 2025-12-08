@@ -375,7 +375,7 @@ const PurchaseForm = () => {
       {/* FULL NAME / BUSINESS NAME */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label>Full Name</label>
+          <label className='opacity-50'>Full Name</label>
           <input
             type="text"
             name="fullName"
@@ -387,7 +387,7 @@ const PurchaseForm = () => {
         </div>
 
         <div>
-          <label>Business Name</label>
+          <label className='opacity-50'>Business Name</label>
           <input
             type="text"
             name="businessName"
@@ -402,7 +402,7 @@ const PurchaseForm = () => {
       {/* PHONE / EMAIL */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label>Phone Number</label>
+          <label className='opacity-50'>Phone Number</label>
           <input
             type="tel"
             name="phoneNumber"
@@ -414,7 +414,7 @@ const PurchaseForm = () => {
         </div>
 
         <div>
-          <label>Email Address</label>
+          <label className='opacity-50'>Email Address</label>
           <input
             type="email"
             name="email"
@@ -429,7 +429,7 @@ const PurchaseForm = () => {
       {/* COUNTRY / CITY */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label>Country</label>
+          <label className='opacity-50'>Country</label>
           <input
             type="text"
             name="country"
@@ -441,7 +441,7 @@ const PurchaseForm = () => {
         </div>
 
         <div>
-          <label>City</label>
+          <label className='opacity-50'>City</label>
           <input
             type="text"
             name="city"
@@ -456,59 +456,59 @@ const PurchaseForm = () => {
       {/* TYPE OF BUSINESS / BRANCHES */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label>Type of Business</label>
+          <label className='opacity-50'>Type of Business</label>
           <select
             name="businessType"
             value={formData.businessType}
             onChange={handleChange}
             className="border px-3 py-2 rounded w-full"
           >
-            <option value="">Select...</option>
-            <option value="Salon">Salon</option>
-            <option value="Nail Studio">Nail Studio</option>
-            <option value="Barbershop">Barbershop</option>
-            <option value="Hair Stylist">Hair Stylist</option>
-            <option value="Gents Parlour">Gents Parlour</option>
-            <option value="Beauty Academy">Beauty Academy</option>
-            <option value="Other">Other</option>
+            <option value="" className='opacity-50'>Select...</option>
+            <option value="Salon" className='text-black'>Salon</option>
+            <option value="Nail Studio" className='text-black'>Nail Studio</option>
+            <option value="Barbershop" className='text-black'>Barbershop</option>
+            <option value="Hair Stylist" className='text-black'>Hair Stylist</option>
+            <option value="Gents Parlour" className='text-black'>Gents Parlour</option>
+            <option value="Beauty Academy" className='text-black'>Beauty Academy</option>
+            <option value="Other" className='text-black'>Other</option>
           </select>
         </div>
 
         <div>
-          <label>Number of Branches</label>
+          <label className='opacity-50'>Number of Branches</label>
           <select
             name="numberOfBranches"
             value={formData.numberOfBranches}
             onChange={handleChange}
             className="border px-3 py-2 rounded w-full"
           >
-            <option value="">Select...</option>
-            <option value="1">1</option>
-            <option value="2–3">2–3</option>
-            <option value="4–5">4–5</option>
-            <option value="5+">5+</option>
+            <option value="" className='opacity-50'>Select...</option>
+            <option value="1" className='text-black'>1</option>
+            <option value="2–3" className='text-black'>2–3</option>
+            <option value="4–5" className='text-black'>4–5</option>
+            <option value="5+" className='text-black'>5+</option>
           </select>
         </div>
       </div>
 
       {/* WEBSITE INTEGRATION */}
       <div>
-        <label>Do you want website integration?</label>
+        <label className='opacity-50'>Do you want website integration?</label>
         <select
           name="websiteIntegration"
           value={formData.websiteIntegration}
           onChange={handleChange}
-          className="border px-3 py-2 rounded w-full"
+          className="border px-3 py-2 rounded w-full "
         >
-          <option value="">Select...</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
+          <option value="" className='opacity-50'>Select...</option>
+          <option value="Yes" className='text-black'>Yes</option>
+          <option value="No"className='text-black' >No</option>
         </select>
       </div>
 
       {/* MESSAGE */}
       <div>
-        <label>Message / Requirements</label>
+        <label className='opacity-50' >Message / Requirements</label>
         <textarea
           name="message"
           placeholder="Tell us more about your setup..."
