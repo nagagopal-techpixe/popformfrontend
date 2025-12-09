@@ -370,6 +370,7 @@ const PurchaseForm = () => {
   };
 
   return (
+    
     <form onSubmit={handleSubmit} className="space-y-4">
 
       {/* FULL NAME / BUSINESS NAME */}
@@ -526,61 +527,204 @@ const PurchaseForm = () => {
   );
 };
 
+//request a demo
 
 const RequestDemoForm = () => {
+   const [formData, setFormData] = useState({
+    fullName: "",
+    phoneNumber: "",
+    email: "",
+    businessName: "",
+    businessType: "",
+    preferredDemoType: "",
+    featuresInterested: [],
+    questions: ""
+  });
+   const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("http://localhost:9000/api/demo", formData);
+      alert("demo submitted successfully!");
+      console.log("SUCCESS:", res.data);
+    } catch (error) {
+      console.log("BACKEND ERROR:", error.response?.data);
+      alert(error.response?.data?.message || "Error submitting form");
+    }
+  };
   const [demoType, setDemoType] = useState('');
 
   return (
-    <form className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <FormInput label="Full Name" placeholder="James Wilson" />
-        <FormInput label="Phone Number" placeholder="+44 7700 900000" type="tel" />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <FormInput label="Email Address" placeholder="james@example.co.uk" type="email" />
-        <FormInput label="Business Name" placeholder="The Grooming Room" />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <FormSelect 
-          label="Type of Business" 
-          options={["Salon", "Nail Studio", "Barbershop", "Hair Stylist", "Gents Parlour", "Beauty Academy", "Other"]} 
-        />
-        <FormSelect 
-          label="Preferred Demo Type" 
-          options={["Recorded Video Demo", "Live Zoom Demo"]} 
-          onChange={(e) => setDemoType(e.target.value)}
-        />
-      </div>
-
-      {demoType === 'Live Zoom Demo' && (
-        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-          <FormSelect 
-            label="Preferred Time Slot (UK Time)" 
-            options={[
-              "10:00 AM",
-              "11:00 AM",
-              "1:00 PM",
-              "2:00 PM",
-              "4:00 PM",
-              "5:00 PM"
-            ]} 
+    <form className="space-y-4" onSubmit={handleSubmit}>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className='opacity-50'>Full Name</label>
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Sarah Smith"
+            value={formData.fullName}
+            onChange={handleChange}
+            className="border px-3 py-2 rounded w-full"
           />
         </div>
-      )}
-      
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-slate-400 mb-2">What features are you most interested in?</label>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-          {["Appointment Booking", "Staff & Services", "Branch Management", "Portfolio/Gallery", "Payments & Billing", "Attendance & Payouts", "Customer Panel"].map((feature) => (
-            <label key={feature} className="flex items-center space-x-2 text-sm text-slate-300 cursor-pointer p-2 rounded hover:bg-slate-800 transition">
-              <input type="checkbox" className="rounded border-slate-600 bg-slate-800 text-rose-600 focus:ring-rose-500" />
-              <span>{feature}</span>
-            </label>
-          ))}
+
+        <div>
+          <label className='opacity-50'>Business Name</label>
+          <input
+            type="text"
+            name="businessName"
+            placeholder="Posh Parlour London"
+            value={formData.businessName}
+            onChange={handleChange}
+            className="border px-3 py-2 rounded w-full"
+          />
         </div>
       </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className='opacity-50'>Phone Number</label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="+44 7700 900000"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            className="border px-3 py-2 rounded w-full"
+          />
+        </div>
 
-      <FormTextarea label="Any specific questions?" placeholder="Ask us anything..." />
+        <div>
+          <label className='opacity-50'>Email Address</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="sarah@example.co.uk"
+            value={formData.email}
+            onChange={handleChange}
+            className="border px-3 py-2 rounded w-full"
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+       <div>
+          <label className='opacity-50'>Type of Business</label>
+          <select
+            name="businessType"
+            value={formData.businessType}
+            onChange={handleChange}
+            className="border px-3 py-2 rounded w-full"
+          >
+            <option value="" className='opacity-50 text-black'>Select...</option>
+            <option value="Salon" className='text-black'>Salon</option>
+            <option value="Nail Studio" className='text-black'>Nail Studio</option>
+            <option value="Barbershop" className='text-black'>Barbershop</option>
+            <option value="Hair Stylist" className='text-black'>Hair Stylist</option>
+            <option value="Gents Parlour" className='text-black'>Gents Parlour</option>
+            <option value="Beauty Academy" className='text-black'>Beauty Academy</option>
+            <option value="Other" className='text-black'>Other</option>
+          </select>
+        </div>
+       <div>
+  <label className="opacity-50">Preferred Demo Type</label>
+  <select
+    name="preferredDemoType"
+    value={formData.preferredDemoType}
+    onChange={(e) => {
+      handleChange(e); 
+      setDemoType(e.target.value);  // keeps old logic
+    }}
+    className="border px-3 py-2 rounded w-full"
+  >
+    <option value="" className="opacity-50 text-black">Select...</option>
+    <option value="Recorded Video Demo"  className='text-black'>Recorded Video Demo</option>
+    <option value="Live Zoom Demo"  className='text-black'>Live Zoom Demo</option>
+  </select>
+</div>
+
+      </div>
+
+     {demoType === "Live Zoom Demo" && (
+  <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+    <label className="opacity-50">Preferred Time Slot (UK Time)</label>
+    <select
+      name="preferredTimeSlot"
+      value={formData.preferredTimeSlot}
+      onChange={handleChange}
+      className="border px-3 py-2 rounded w-full"
+    >
+      <option value="" className="opacity-20 text-black">Select...</option>
+      <option value="10:00 AM" className='text-black'>10:00 AM</option>
+      <option value="11:00 AM" className='text-black'>11:00 AM</option>
+      <option value="1:00 PM"className='text-black'>1:00 PM</option>
+      <option value="2:00 PM" className='text-black'>2:00 PM</option>
+      <option value="4:00 PM" className='text-black'>4:00 PM</option>
+      <option value="5:00 PM" className='text-black'>5:00 PM</option>
+    </select>
+  </div>
+)}
+
+      
+      <div className="mb-4">
+  <label className="block text-sm font-medium text-slate-400 mb-2">
+    What features are you most interested in?
+  </label>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    {[
+      "Appointment Booking",
+      "Staff & Services",
+      "Branch Management",
+      "Portfolio/Gallery",
+      "Payments & Billing",
+      "Attendance & Payouts",
+      "Customer Panel",
+    ].map((feature) => (
+      <label
+        key={feature}
+        className="flex items-center space-x-2 text-sm text-slate-300 cursor-pointer p-2 rounded hover:bg-slate-800 transition"
+      >
+        <input
+          type="checkbox"
+          name="featuresInterested"
+          value={feature}
+          checked={formData.featuresInterested.includes(feature)}
+          onChange={(e) => {
+            const { value, checked } = e.target;
+            let updatedFeatures = [...formData.featuresInterested];
+            if (checked) {
+              updatedFeatures.push(value);
+            } else {
+              updatedFeatures = updatedFeatures.filter((f) => f !== value);
+            }
+            setFormData({ ...formData, featuresInterested: updatedFeatures });
+          }}
+          className="rounded border-slate-600 bg-slate-800 text-rose-600 focus:ring-rose-500"
+        />
+        <span>{feature}</span>
+      </label>
+    ))}
+  </div>
+</div>
+
+
+      <div>
+        <label className='opacity-50' >Message / Requirements</label>
+        <textarea
+          name="questions"
+          placeholder="Tell us more about your setup..."
+          value={formData.questions}
+          onChange={handleChange}
+          className="border px-3 py-2 rounded w-full"
+          rows="4"
+          border="none"
+        ></textarea>
+      </div>
       
       <button className="w-full bg-slate-800 border border-slate-600 text-white font-bold py-4 rounded-xl hover:bg-slate-700 transition-all mt-4">
         👉 Request Demo
@@ -593,7 +737,7 @@ const ScheduleLiveDemoForm = () => (
   <form className="space-y-4">
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <FormInput label="Full Name" placeholder="Emma Thompson" />
-      <FormInput label="Phone Number (WhatsApp)" placeholder="+44 7700 900000" type="tel" />
+      <FormInput label="Phone Number (WhatsApp)" placeholder="+44 7700 900000" type="tel" name="phoneNumber"  />
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <FormInput label="Email Address" placeholder="emma@example.co.uk" type="email" />
