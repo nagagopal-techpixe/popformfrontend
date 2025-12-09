@@ -1,25 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 
-import { 
-  Scissors, 
-  CalendarCheck, 
-  Users, 
-  LayoutDashboard, 
-  Image, 
-  Bell, 
-  Settings, 
-  CreditCard, 
-  Briefcase, 
-  CheckCircle2, 
-  Server, 
-  TrendingUp, 
-  Menu, 
-  X, 
-  ChevronDown, 
-  Star, 
-  Mail, 
-  MapPin, 
+import {
+  Scissors,
+  CalendarCheck,
+  Users,
+  LayoutDashboard,
+  Image,
+  Bell,
+  Settings,
+  CreditCard,
+  Briefcase,
+  CheckCircle2,
+  Server,
+  TrendingUp,
+  Menu,
+  X,
+  ChevronDown,
+  Star,
+  Mail,
+  MapPin,
   Phone,
   Monitor,
   Sparkles,
@@ -58,13 +58,12 @@ const useOnScreen = (options) => {
 
 const Reveal = ({ children, delay = 0, className = "" }) => {
   const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
-  
+
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ease-out transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-      } ${className}`}
+      className={`transition-all duration-1000 ease-out transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+        } ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -270,14 +269,14 @@ const Modal = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-      <div 
+      <div
         className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       ></div>
       <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
         <div className="flex justify-between items-center p-6 border-b border-slate-800">
           <h3 className="text-2xl font-bold text-white">{title}</h3>
-          <button 
+          <button
             onClick={onClose}
             className="text-slate-400 hover:text-white transition-colors hover:bg-slate-800 p-2 rounded-full"
           >
@@ -295,8 +294,8 @@ const Modal = ({ isOpen, onClose, title, children }) => {
 const FormInput = ({ label, type = "text", placeholder, required = true }) => (
   <div className="mb-4">
     <label className="block text-sm font-medium text-slate-400 mb-1">{label} {required && <span className="text-rose-500">*</span>}</label>
-    <input 
-      type={type} 
+    <input
+      type={type}
       className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all"
       placeholder={placeholder}
       required={required}
@@ -308,7 +307,7 @@ const FormSelect = ({ label, options, required = true, onChange, value }) => (
   <div className="mb-4">
     <label className="block text-sm font-medium text-slate-400 mb-1">{label} {required && <span className="text-rose-500">*</span>}</label>
     <div className="relative">
-      <select 
+      <select
         defaultValue={value === undefined ? "" : undefined}
         value={value}
         onChange={onChange}
@@ -325,7 +324,7 @@ const FormSelect = ({ label, options, required = true, onChange, value }) => (
 const FormTextarea = ({ label, placeholder, rows = 3 }) => (
   <div className="mb-4">
     <label className="block text-sm font-medium text-slate-400 mb-1">{label}</label>
-    <textarea 
+    <textarea
       className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500 transition-all"
       placeholder={placeholder}
       rows={rows}
@@ -360,7 +359,7 @@ const PurchaseForm = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:9000/api/leads", formData);
+      const res = await axios.post("http://forms.bteam11.com/api/leads", formData);
       alert("Lead submitted successfully!");
       console.log("SUCCESS:", res.data);
     } catch (error) {
@@ -370,7 +369,7 @@ const PurchaseForm = () => {
   };
 
   return (
-    
+
     <form onSubmit={handleSubmit} className="space-y-4">
 
       {/* FULL NAME / BUSINESS NAME */}
@@ -503,7 +502,7 @@ const PurchaseForm = () => {
         >
           <option value="" className='opacity-50'>Select...</option>
           <option value="Yes" className='text-black'>Yes</option>
-          <option value="No"className='text-black' >No</option>
+          <option value="No" className='text-black' >No</option>
         </select>
       </div>
 
@@ -530,7 +529,7 @@ const PurchaseForm = () => {
 //request a demo
 
 const RequestDemoForm = () => {
-   const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     fullName: "",
     phoneNumber: "",
     email: "",
@@ -540,7 +539,7 @@ const RequestDemoForm = () => {
     featuresInterested: [],
     questions: ""
   });
-   const handleChange = (e) => {
+  const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -550,7 +549,7 @@ const RequestDemoForm = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:9000/api/demo", formData);
+      const res = await axios.post("http://forms.bteam11.com/api/demo", formData);
       alert("demo submitted successfully!");
       console.log("SUCCESS:", res.data);
     } catch (error) {
@@ -562,7 +561,7 @@ const RequestDemoForm = () => {
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className='opacity-50'>Full Name</label>
           <input
@@ -587,7 +586,7 @@ const RequestDemoForm = () => {
           />
         </div>
       </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className='opacity-50'>Phone Number</label>
           <input
@@ -613,7 +612,7 @@ const RequestDemoForm = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-       <div>
+        <div>
           <label className='opacity-50'>Type of Business</label>
           <select
             name="businessType"
@@ -631,86 +630,86 @@ const RequestDemoForm = () => {
             <option value="Other" className='text-black'>Other</option>
           </select>
         </div>
-       <div>
-  <label className="opacity-50">Preferred Demo Type</label>
-  <select
-    name="preferredDemoType"
-    value={formData.preferredDemoType}
-    onChange={(e) => {
-      handleChange(e); 
-      setDemoType(e.target.value);  // keeps old logic
-    }}
-    className="border px-3 py-2 rounded w-full"
-  >
-    <option value="" className="opacity-50 text-black">Select...</option>
-    <option value="Recorded Video Demo"  className='text-black'>Recorded Video Demo</option>
-    <option value="Live Zoom Demo"  className='text-black'>Live Zoom Demo</option>
-  </select>
-</div>
+        <div>
+          <label className="opacity-50">Preferred Demo Type</label>
+          <select
+            name="preferredDemoType"
+            value={formData.preferredDemoType}
+            onChange={(e) => {
+              handleChange(e);
+              setDemoType(e.target.value);  // keeps old logic
+            }}
+            className="border px-3 py-2 rounded w-full"
+          >
+            <option value="" className="opacity-50 text-black">Select...</option>
+            <option value="Recorded Video Demo" className='text-black'>Recorded Video Demo</option>
+            <option value="Live Zoom Demo" className='text-black'>Live Zoom Demo</option>
+          </select>
+        </div>
 
       </div>
 
-     {demoType === "Live Zoom Demo" && (
-  <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-    <label className="opacity-50">Preferred Time Slot (UK Time)</label>
-    <select
-      name="preferredTimeSlot"
-      value={formData.preferredTimeSlot}
-      onChange={handleChange}
-      className="border px-3 py-2 rounded w-full"
-    >
-      <option value="" className="opacity-20 text-black">Select...</option>
-      <option value="10:00 AM" className='text-black'>10:00 AM</option>
-      <option value="11:00 AM" className='text-black'>11:00 AM</option>
-      <option value="1:00 PM"className='text-black'>1:00 PM</option>
-      <option value="2:00 PM" className='text-black'>2:00 PM</option>
-      <option value="4:00 PM" className='text-black'>4:00 PM</option>
-      <option value="5:00 PM" className='text-black'>5:00 PM</option>
-    </select>
-  </div>
-)}
+      {demoType === "Live Zoom Demo" && (
+        <div className="animate-in fade-in slide-in-from-top-2 duration-300">
+          <label className="opacity-50">Preferred Time Slot (UK Time)</label>
+          <select
+            name="preferredTimeSlot"
+            value={formData.preferredTimeSlot}
+            onChange={handleChange}
+            className="border px-3 py-2 rounded w-full"
+          >
+            <option value="" className="opacity-20 text-black">Select...</option>
+            <option value="10:00 AM" className='text-black'>10:00 AM</option>
+            <option value="11:00 AM" className='text-black'>11:00 AM</option>
+            <option value="1:00 PM" className='text-black'>1:00 PM</option>
+            <option value="2:00 PM" className='text-black'>2:00 PM</option>
+            <option value="4:00 PM" className='text-black'>4:00 PM</option>
+            <option value="5:00 PM" className='text-black'>5:00 PM</option>
+          </select>
+        </div>
+      )}
 
-      
+
       <div className="mb-4">
-  <label className="block text-sm font-medium text-slate-400 mb-2">
-    What features are you most interested in?
-  </label>
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-    {[
-      "Appointment Booking",
-      "Staff & Services",
-      "Branch Management",
-      "Portfolio/Gallery",
-      "Payments & Billing",
-      "Attendance & Payouts",
-      "Customer Panel",
-    ].map((feature) => (
-      <label
-        key={feature}
-        className="flex items-center space-x-2 text-sm text-slate-300 cursor-pointer p-2 rounded hover:bg-slate-800 transition"
-      >
-        <input
-          type="checkbox"
-          name="featuresInterested"
-          value={feature}
-          checked={formData.featuresInterested.includes(feature)}
-          onChange={(e) => {
-            const { value, checked } = e.target;
-            let updatedFeatures = [...formData.featuresInterested];
-            if (checked) {
-              updatedFeatures.push(value);
-            } else {
-              updatedFeatures = updatedFeatures.filter((f) => f !== value);
-            }
-            setFormData({ ...formData, featuresInterested: updatedFeatures });
-          }}
-          className="rounded border-slate-600 bg-slate-800 text-rose-600 focus:ring-rose-500"
-        />
-        <span>{feature}</span>
-      </label>
-    ))}
-  </div>
-</div>
+        <label className="block text-sm font-medium text-slate-400 mb-2">
+          What features are you most interested in?
+        </label>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {[
+            "Appointment Booking",
+            "Staff & Services",
+            "Branch Management",
+            "Portfolio/Gallery",
+            "Payments & Billing",
+            "Attendance & Payouts",
+            "Customer Panel",
+          ].map((feature) => (
+            <label
+              key={feature}
+              className="flex items-center space-x-2 text-sm text-slate-300 cursor-pointer p-2 rounded hover:bg-slate-800 transition"
+            >
+              <input
+                type="checkbox"
+                name="featuresInterested"
+                value={feature}
+                checked={formData.featuresInterested.includes(feature)}
+                onChange={(e) => {
+                  const { value, checked } = e.target;
+                  let updatedFeatures = [...formData.featuresInterested];
+                  if (checked) {
+                    updatedFeatures.push(value);
+                  } else {
+                    updatedFeatures = updatedFeatures.filter((f) => f !== value);
+                  }
+                  setFormData({ ...formData, featuresInterested: updatedFeatures });
+                }}
+                className="rounded border-slate-600 bg-slate-800 text-rose-600 focus:ring-rose-500"
+              />
+              <span>{feature}</span>
+            </label>
+          ))}
+        </div>
+      </div>
 
 
       <div>
@@ -725,7 +724,7 @@ const RequestDemoForm = () => {
           border="none"
         ></textarea>
       </div>
-      
+
       <button className="w-full bg-slate-800 border border-slate-600 text-white font-bold py-4 rounded-xl hover:bg-slate-700 transition-all mt-4">
         👉 Request Demo
       </button>
@@ -763,7 +762,7 @@ const ScheduleLiveDemoForm = () => {
     setMessage("");
 
     try {
-      const res = await fetch("http://localhost:9000/api/schedule", {
+      const res = await fetch("http://forms.bteam11.com/api/schedule", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -800,96 +799,144 @@ const ScheduleLiveDemoForm = () => {
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input
-          name="fullName"
-          value={formData.fullName}
-          onChange={handleChange}
-          placeholder="Full Name"
-          className="border px-3 py-2 rounded w-full"
-          required
-        />
-        <input
-          name="phoneNumber"
-          value={formData.phoneNumber}
-          onChange={handleChange}
-          placeholder="+44 7700 900000"
-          type="tel"
-          className="border px-3 py-2 rounded w-full"
-          required
-        />
+        <div>
+          <label className="block font-medium mb-1 opacity-50" htmlFor="fullName">Full Name</label>
+          <input
+            id="fullName"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            placeholder="Emma Thompson"
+            className="border px-3 py-2 rounded w-full"
+            required
+          />
+        </div>
+        <div>
+          <label className="block font-medium mb-1 opacity-50" htmlFor="phoneNumber">Phone Number</label>
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            placeholder="+44 7700 900000"
+            type="tel"
+            className="border px-3 py-2 rounded w-full"
+            required
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Email Address"
-          type="email"
-          className="border px-3 py-2 rounded w-full"
-        />
-        <input
-          name="businessName"
-          value={formData.businessName}
-          onChange={handleChange}
-          placeholder="Business Name"
-          className="border px-3 py-2 rounded w-full"
-        />
+        <div>
+
+          <label className="block font-medium mb-1 opacity-50" htmlFor="email">Email</label>
+
+          <input
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email Address"
+            type="email"
+            className="border px-3 py-2 rounded w-full"
+          /></div>
+
+
+        <div>
+          <label className="block font-medium mb-1 opacity-50" htmlFor="businessName">Business Name</label>
+
+
+          <input
+            id="businessName"
+            name="businessName"
+            value={formData.businessName}
+            onChange={handleChange}
+            placeholder="Business Name"
+            className="border px-3 py-2 rounded w-full"
+          />
+        </div>
       </div>
+      <div>
+        <label className="block font-medium mb-1 opacity-50" htmlFor="Country&Timezone">Country & Timezone</label>
 
-      <input
-        name="countryTimezone"
-        value={formData.countryTimezone}
-        onChange={handleChange}
-        placeholder="Country & Timezone"
-        className="border px-3 py-2 rounded w-full"
-        required
-      />
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input
-          name="preferredDate"
-          value={formData.preferredDate}
+          id="Country&Timezone"
+          name="countryTimezone"
+          value={formData.countryTimezone}
           onChange={handleChange}
-          type="date"
+          placeholder="Country & Timezone"
           className="border px-3 py-2 rounded w-full"
           required
-        />
+        /></div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block font-medium mb-1 opacity-50 " htmlFor="PreferredDate">Preferred Date</label>
+
+
+
+          <input
+            id="PreferredDate"
+            name="preferredDate"
+            value={formData.preferredDate}
+            onChange={handleChange}
+            type="date"
+            className="border px-3 py-2 rounded w-full"
+            required
+          />
+        </div>
+<div>
+          <label className="block font-medium mb-1 opacity-50" htmlFor="PreferredTimeSlot ">Preferred Time Slot (UK Time)</label>
 
         <select
+        id="PreferredTimeSlot "
           name="preferredTimeSlot"
           value={formData.preferredTimeSlot}
           onChange={handleChange}
-          className="border px-3 py-2 rounded w-full"
+          className="border px-3 py-2 rounded w-full "
           required
         >
-          <option value="">Select Time Slot</option>
-          {["10:00 AM", "11:00 AM", "1:00 PM", "2:00 PM", "4:00 PM", "5:00 PM"].map(slot => (
-            <option key={slot} value={slot}>{slot}</option>
-          ))}
+           <option value="" >Select Time Slot</option>
+    <option value="10:00 AM" className='text-black'>10:00 AM</option>
+    <option value="11:00 AM" className='text-black'>11:00 AM</option>
+    <option value="1:00 PM" className='text-black'>1:00 PM</option>
+    <option value="2:00 PM" className='text-black'>2:00 PM</option>
+    <option value="4:00 PM" className='text-black'>4:00 PM</option>
+    <option value="5:00 PM" className='text-black'>5:00 PM</option>
         </select>
+        </div>
       </div>
+<div>
+          <label className="block font-medium mb-1 opacity-50" htmlFor="NumberofTeamMembersJoining">Number of Team Members Joining</label>
 
-      <select
-        name="teamMembers"
-        value={formData.teamMembers}
-        onChange={handleChange}
-        className="border px-3 py-2 rounded w-full"
-        required
-      >
-        <option value="">Number of Team Members</option>
-        {["Just Me", "2", "3–5", "5+"].map(team => (
-          <option key={team} value={team}>{team}</option>
-        ))}
-      </select>
+   
+
+    <select
+  name="teamMembers"
+  value={formData.teamMembers}
+  onChange={handleChange}
+  className="border px-3 py-2 rounded w-full "
+>
+  <option value="" >Number of Team Members</option>
+  <option value="Just Me" className='text-black'>Just Me</option>
+  <option value="2" className='text-black'>2</option>
+  <option value="3–5" className='text-black'>3–5</option>
+  <option value="5+"className='text-black'>5+</option>
+</select>
+
+      </div>
+      <div>
+          <label className="block font-medium mb-1 opacity-50" htmlFor="Anyspecificquestions">Any specific questions?</label>
 
       <textarea
+      id="Anyspecificquestions"
         name="focus"
         value={formData.focus}
         onChange={handleChange}
         placeholder="What should we focus on?"
         className="border px-3 py-2 rounded w-full"
       />
+       </div>
 
       <button
         type="submit"
@@ -944,17 +991,17 @@ const DashboardMockup = () => (
           ))}
         </div>
         <div className="bg-slate-900 rounded-lg shadow-sm border border-slate-800 p-4 h-full">
-           <div className="flex justify-between mb-4">
-              <div className="h-4 w-24 bg-slate-800 rounded"></div>
-              <div className="h-8 w-24 bg-slate-950 rounded"></div>
-           </div>
-           {[1, 2, 3, 4].map(i => (
-             <div key={i} className="h-12 border-b border-slate-800 flex items-center gap-4">
-                <div className="w-8 h-8 rounded-full bg-slate-800"></div>
-                <div className="flex-1 h-3 bg-slate-800 rounded"></div>
-                <div className="w-20 h-6 bg-green-900/20 rounded-full"></div>
-             </div>
-           ))}
+          <div className="flex justify-between mb-4">
+            <div className="h-4 w-24 bg-slate-800 rounded"></div>
+            <div className="h-8 w-24 bg-slate-950 rounded"></div>
+          </div>
+          {[1, 2, 3, 4].map(i => (
+            <div key={i} className="h-12 border-b border-slate-800 flex items-center gap-4">
+              <div className="w-8 h-8 rounded-full bg-slate-800"></div>
+              <div className="flex-1 h-3 bg-slate-800 rounded"></div>
+              <div className="w-20 h-6 bg-green-900/20 rounded-full"></div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -1006,7 +1053,7 @@ const FAQItem = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="border-b border-slate-800 last:border-0">
-      <button 
+      <button
         className="flex justify-between items-center w-full py-5 text-left focus:outline-none group"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -1025,7 +1072,7 @@ const FAQItem = ({ question, answer }) => {
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeModal, setActiveModal] = useState(null); 
+  const [activeModal, setActiveModal] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -1043,7 +1090,7 @@ export default function App() {
 
   // Helper to determine modal title
   const getModalTitle = (type) => {
-    switch(type) {
+    switch (type) {
       case 'purchase': return 'Get Your Software';
       case 'requestDemo': return 'Request a Demo';
       case 'scheduleDemo': return 'Schedule Live Demo';
@@ -1115,11 +1162,11 @@ export default function App() {
             </div>
             Salon<span className="text-rose-500">Ware</span>
           </div>
-          
+
           <div className="hidden md:flex items-center space-x-8">
             {['Features', 'Panels', 'Benefits', 'FAQ'].map((item) => (
-              <button 
-                key={item} 
+              <button
+                key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
                 className="text-slate-400 hover:text-white font-medium transition-colors"
               >
@@ -1137,15 +1184,15 @@ export default function App() {
         {mobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-slate-900 border-t border-slate-800 shadow-xl p-4 flex flex-col space-y-4 md:hidden">
             {['Features', 'Panels', 'Benefits', 'FAQ'].map((item) => (
-              <button 
-                key={item} 
+              <button
+                key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
                 className="text-left text-slate-300 font-medium py-2 hover:text-white"
               >
                 {item}
               </button>
             ))}
-            <button 
+            <button
               onClick={() => { setActiveModal('purchase'); setMobileMenuOpen(false); }}
               className="bg-rose-600 text-white px-6 py-3 rounded-lg font-bold w-full"
             >
@@ -1176,13 +1223,13 @@ export default function App() {
                 Take full control of your beauty business with a complete booking, staff, and management suite. Installed on your server. 100% GDPR Compliant.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <button 
+                <button
                   onClick={() => setActiveModal('purchase')}
                   className="bg-rose-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-rose-500 transition-all shadow-lg shadow-rose-600/20 flex items-center justify-center gap-2 hover:scale-105"
                 >
                   <Monitor size={20} /> Get Your Software
                 </button>
-                <button 
+                <button
                   onClick={() => setActiveModal('requestDemo')}
                   className="bg-slate-800 text-white border border-slate-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-700 transition-all flex items-center justify-center gap-2"
                 >
@@ -1224,58 +1271,58 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Reveal delay={0} className="h-full">
-              <FeatureCard 
-                icon={CalendarCheck} 
-                title="Smart Booking" 
+              <FeatureCard
+                icon={CalendarCheck}
+                title="Smart Booking"
                 desc="Flexible time-slot booking system with instant confirmations and conflict detection."
               />
             </Reveal>
             <Reveal delay={100} className="h-full">
-              <FeatureCard 
-                icon={Users} 
-                title="Staff Management" 
+              <FeatureCard
+                icon={Users}
+                title="Staff Management"
                 desc="Organize services, assign staff, set individual schedules, break times, and commissions."
               />
             </Reveal>
             <Reveal delay={200} className="h-full">
-              <FeatureCard 
-                icon={Image} 
-                title="Portfolio Showcase" 
+              <FeatureCard
+                icon={Image}
+                title="Portfolio Showcase"
                 desc="Display your best hairstyles, nail designs, and before/after images in a stunning gallery."
               />
             </Reveal>
             <Reveal delay={300} className="h-full">
-              <FeatureCard 
-                icon={Bell} 
-                title="Auto Notifications" 
+              <FeatureCard
+                icon={Bell}
+                title="Auto Notifications"
                 desc="Automated email notifications for bookings, cancellations, reminders, and updates."
               />
             </Reveal>
             <Reveal delay={400} className="h-full">
-              <FeatureCard 
-                icon={Settings} 
-                title="Customisable Theme" 
+              <FeatureCard
+                icon={Settings}
+                title="Customisable Theme"
                 desc="Change branding, logos, colours, and layout settings to match your salon's identity."
               />
             </Reveal>
             <Reveal delay={500} className="h-full">
-              <FeatureCard 
-                icon={Monitor} 
-                title="Customer Panel" 
+              <FeatureCard
+                icon={Monitor}
+                title="Customer Panel"
                 desc="A dedicated portal for clients to book, view history, download invoices, and leave feedback."
               />
             </Reveal>
             <Reveal delay={600} className="h-full">
-              <FeatureCard 
-                icon={LayoutDashboard} 
-                title="Admin Dashboard" 
+              <FeatureCard
+                icon={LayoutDashboard}
+                title="Admin Dashboard"
                 desc="Track bookings, revenue, staff activity, and branch performance in real-time."
               />
             </Reveal>
             <Reveal delay={700} className="h-full">
-              <FeatureCard 
-                icon={Shield} 
-                title="GDPR Compliant" 
+              <FeatureCard
+                icon={Shield}
+                title="GDPR Compliant"
                 desc="Self-hosted means you keep full control of customer data, ensuring compliance with UK data laws."
               />
             </Reveal>
@@ -1286,49 +1333,49 @@ export default function App() {
       {/* --- SECTION 4: WHAT YOU GET (PANELS) --- */}
       <section id="panels" className="py-24 bg-slate-900/50 relative">
         <div className="container mx-auto px-6">
-           <div className="text-center mb-16">
-             <h2 className="text-4xl font-bold text-white">4 Powerful Panels Included</h2>
-             <p className="text-slate-400 mt-4">One software installation, four distinct roles.</p>
-           </div>
-           
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-             <Reveal delay={0}>
-               <PanelCard 
-                 title="Admin" 
-                 role="The Owner" 
-                 colorClass="bg-slate-800"
-                 borderColor="border-slate-700"
-                 items={['Full Business Control', 'Manage Branches', 'Financial Reports', 'Staff Settings', 'System Config']}
-               />
-             </Reveal>
-             <Reveal delay={150}>
-               <PanelCard 
-                 title="Manager" 
-                 role="Operations Head" 
-                 colorClass="bg-rose-700"
-                 borderColor="border-rose-900/30"
-                 items={['Daily Operations', 'Booking Oversight', 'Customer Handling', 'Gallery Updates', 'Inventory Check']}
-               />
-             </Reveal>
-             <Reveal delay={300}>
-               <PanelCard 
-                 title="Staff" 
-                 role="Stylists & Barbers" 
-                 colorClass="bg-amber-700"
-                 borderColor="border-amber-900/30"
-                 items={['View Schedule', 'Check Appointments', 'Track Commissions', 'Mark Attendance', 'Availability Status']}
-               />
-             </Reveal>
-             <Reveal delay={450}>
-               <PanelCard 
-                 title="Customer" 
-                 role="Your Clients" 
-                 colorClass="bg-emerald-700"
-                 borderColor="border-emerald-900/30"
-                 items={['Book Online', 'Choose Staff', 'View Invoices', 'Rate Services', 'Mobile Friendly']}
-               />
-             </Reveal>
-           </div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white">4 Powerful Panels Included</h2>
+            <p className="text-slate-400 mt-4">One software installation, four distinct roles.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Reveal delay={0}>
+              <PanelCard
+                title="Admin"
+                role="The Owner"
+                colorClass="bg-slate-800"
+                borderColor="border-slate-700"
+                items={['Full Business Control', 'Manage Branches', 'Financial Reports', 'Staff Settings', 'System Config']}
+              />
+            </Reveal>
+            <Reveal delay={150}>
+              <PanelCard
+                title="Manager"
+                role="Operations Head"
+                colorClass="bg-rose-700"
+                borderColor="border-rose-900/30"
+                items={['Daily Operations', 'Booking Oversight', 'Customer Handling', 'Gallery Updates', 'Inventory Check']}
+              />
+            </Reveal>
+            <Reveal delay={300}>
+              <PanelCard
+                title="Staff"
+                role="Stylists & Barbers"
+                colorClass="bg-amber-700"
+                borderColor="border-amber-900/30"
+                items={['View Schedule', 'Check Appointments', 'Track Commissions', 'Mark Attendance', 'Availability Status']}
+              />
+            </Reveal>
+            <Reveal delay={450}>
+              <PanelCard
+                title="Customer"
+                role="Your Clients"
+                colorClass="bg-emerald-700"
+                borderColor="border-emerald-900/30"
+                items={['Book Online', 'Choose Staff', 'View Invoices', 'Rate Services', 'Mobile Friendly']}
+              />
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -1337,27 +1384,27 @@ export default function App() {
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="lg:w-1/2">
-               <Reveal>
-                 <div className="bg-slate-900 p-8 rounded-3xl shadow-2xl relative border border-slate-800">
-                    <div className="absolute top-4 right-4 w-3 h-3 bg-red-400 rounded-full animate-ping"></div>
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-4 border-b border-slate-800 pb-4">
-                        <div className="w-12 h-12 rounded-full bg-slate-800"></div>
-                        <div>
-                           <div className="h-4 w-32 bg-slate-800 rounded mb-2"></div>
-                           <div className="h-3 w-20 bg-slate-800/50 rounded"></div>
-                        </div>
-                      </div>
-                      <div className="h-32 bg-slate-950 rounded-xl border border-dashed border-slate-700 flex items-center justify-center text-slate-600">
-                        Book Appointment UI
-                      </div>
-                      <div className="flex gap-2">
-                        <div className="h-10 flex-1 bg-rose-600 rounded-lg"></div>
-                        <div className="h-10 w-10 bg-slate-800 rounded-lg"></div>
+              <Reveal>
+                <div className="bg-slate-900 p-8 rounded-3xl shadow-2xl relative border border-slate-800">
+                  <div className="absolute top-4 right-4 w-3 h-3 bg-red-400 rounded-full animate-ping"></div>
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-4 border-b border-slate-800 pb-4">
+                      <div className="w-12 h-12 rounded-full bg-slate-800"></div>
+                      <div>
+                        <div className="h-4 w-32 bg-slate-800 rounded mb-2"></div>
+                        <div className="h-3 w-20 bg-slate-800/50 rounded"></div>
                       </div>
                     </div>
-                 </div>
-               </Reveal>
+                    <div className="h-32 bg-slate-950 rounded-xl border border-dashed border-slate-700 flex items-center justify-center text-slate-600">
+                      Book Appointment UI
+                    </div>
+                    <div className="flex gap-2">
+                      <div className="h-10 flex-1 bg-rose-600 rounded-lg"></div>
+                      <div className="h-10 w-10 bg-slate-800 rounded-lg"></div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
             </div>
             <div className="lg:w-1/2">
               <Reveal delay={200}>
@@ -1435,7 +1482,7 @@ export default function App() {
                       <p className="text-slate-400">Stop paying monthly subscriptions. Buy it once, own it forever. No hidden renewal fees.</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start">
                     <div className="p-3 bg-slate-800 rounded-lg mr-4 border border-slate-700">
                       <Server className="text-rose-400" size={24} />
@@ -1458,27 +1505,27 @@ export default function App() {
                 </div>
               </Reveal>
             </div>
-            
+
             <div className="relative">
-               <div className="absolute inset-0 bg-gradient-to-r from-rose-600 to-amber-600 rounded-2xl transform rotate-3 opacity-20 blur-lg"></div>
-               <div className="relative bg-slate-900 border border-slate-700 p-8 rounded-2xl shadow-2xl">
-                  <h3 className="text-2xl font-bold mb-6 text-center">Cost Comparison</h3>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center p-4 bg-slate-800 rounded-lg border border-slate-700">
-                      <span>SaaS Competitors</span>
-                      <span className="text-red-400 font-mono">£40 - £120 / month</span>
-                    </div>
-                    <div className="flex justify-between items-center p-4 bg-slate-800 rounded-lg border border-slate-700">
-                      <span>Yearly Cost (SaaS)</span>
-                      <span className="text-red-400 font-mono">£480 - £1440 / year</span>
-                    </div>
-                    <div className="h-px bg-slate-700 my-4"></div>
-                    <div className="flex justify-between items-center p-6 bg-gradient-to-r from-rose-600 to-amber-600 rounded-lg shadow-lg transform scale-105">
-                      <span className="font-bold text-lg">SalonWare Lifetime</span>
-                      <span className="font-bold text-2xl font-mono">£1499 Once</span>
-                    </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-rose-600 to-amber-600 rounded-2xl transform rotate-3 opacity-20 blur-lg"></div>
+              <div className="relative bg-slate-900 border border-slate-700 p-8 rounded-2xl shadow-2xl">
+                <h3 className="text-2xl font-bold mb-6 text-center">Cost Comparison</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center p-4 bg-slate-800 rounded-lg border border-slate-700">
+                    <span>SaaS Competitors</span>
+                    <span className="text-red-400 font-mono">£40 - £120 / month</span>
                   </div>
-               </div>
+                  <div className="flex justify-between items-center p-4 bg-slate-800 rounded-lg border border-slate-700">
+                    <span>Yearly Cost (SaaS)</span>
+                    <span className="text-red-400 font-mono">£480 - £1440 / year</span>
+                  </div>
+                  <div className="h-px bg-slate-700 my-4"></div>
+                  <div className="flex justify-between items-center p-6 bg-gradient-to-r from-rose-600 to-amber-600 rounded-lg shadow-lg transform scale-105">
+                    <span className="font-bold text-lg">SalonWare Lifetime</span>
+                    <span className="font-bold text-2xl font-mono">£1499 Once</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1489,24 +1536,24 @@ export default function App() {
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-white mb-12">Trusted by UK Studios</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-             {[
-               { name: "Sarah Jenkins", role: "Owner, Luxe Nails London", text: "The booking system is flawless. My clients love that they can pick their specific nail tech." },
-               { name: "Marc Davies", role: "Founder, Blade Barbers Manchester", text: "Finally, software that doesn't charge me monthly. The staff commission tracking saves me hours every week." },
-               { name: "Elena R.", role: "Manager, Glow Spa Birmingham", text: "Setting it up on our domain was easy with their support. It looks so professional." }
-             ].map((t, i) => (
-               <Reveal key={i} delay={i * 100}>
-                 <div className="bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-700">
-                   <div className="flex justify-center mb-4 text-amber-400">
-                     {[1,2,3,4,5].map(star => <Star key={star} size={16} fill="currentColor" />)}
-                   </div>
-                   <p className="text-slate-300 italic mb-6">"{t.text}"</p>
-                   <div>
-                     <h4 className="font-bold text-white">{t.name}</h4>
-                     <span className="text-sm text-slate-500">{t.role}</span>
-                   </div>
-                 </div>
-               </Reveal>
-             ))}
+            {[
+              { name: "Sarah Jenkins", role: "Owner, Luxe Nails London", text: "The booking system is flawless. My clients love that they can pick their specific nail tech." },
+              { name: "Marc Davies", role: "Founder, Blade Barbers Manchester", text: "Finally, software that doesn't charge me monthly. The staff commission tracking saves me hours every week." },
+              { name: "Elena R.", role: "Manager, Glow Spa Birmingham", text: "Setting it up on our domain was easy with their support. It looks so professional." }
+            ].map((t, i) => (
+              <Reveal key={i} delay={i * 100}>
+                <div className="bg-slate-800 p-8 rounded-2xl shadow-sm border border-slate-700">
+                  <div className="flex justify-center mb-4 text-amber-400">
+                    {[1, 2, 3, 4, 5].map(star => <Star key={star} size={16} fill="currentColor" />)}
+                  </div>
+                  <p className="text-slate-300 italic mb-6">"{t.text}"</p>
+                  <div>
+                    <h4 className="font-bold text-white">{t.name}</h4>
+                    <span className="text-sm text-slate-500">{t.role}</span>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -1518,25 +1565,25 @@ export default function App() {
             <h2 className="text-3xl font-bold text-white">Frequently Asked Questions</h2>
           </div>
           <div className="space-y-2">
-            <FAQItem 
-              question="How does the 'One-Time Purchase' work?" 
-              answer="You pay a single fee to download the source code and files. You install it on your hosting, and it works forever without any monthly subscription fees." 
+            <FAQItem
+              question="How does the 'One-Time Purchase' work?"
+              answer="You pay a single fee to download the source code and files. You install it on your hosting, and it works forever without any monthly subscription fees."
             />
-            <FAQItem 
-              question="Do I need a server or hosting?" 
-              answer="Yes. Since this is self-hosted software, you need a domain name (e.g., yoursalon.co.uk) and a standard hosting plan (cPanel, VPS, or Cloud). We can help you set this up." 
+            <FAQItem
+              question="Do I need a server or hosting?"
+              answer="Yes. Since this is self-hosted software, you need a domain name (e.g., yoursalon.co.uk) and a standard hosting plan (cPanel, VPS, or Cloud). We can help you set this up."
             />
-            <FAQItem 
-              question="What happens if I need support?" 
-              answer="We offer 6 months of free technical support with your purchase. After that, we offer optional paid support packages if you need specific help." 
+            <FAQItem
+              question="What happens if I need support?"
+              answer="We offer 6 months of free technical support with your purchase. After that, we offer optional paid support packages if you need specific help."
             />
-            <FAQItem 
-              question="Can I customise the colours and logo?" 
-              answer="Absolutely. The admin panel allows you to upload your logo, change the primary colour scheme, and update text to match your brand identity." 
+            <FAQItem
+              question="Can I customise the colours and logo?"
+              answer="Absolutely. The admin panel allows you to upload your logo, change the primary colour scheme, and update text to match your brand identity."
             />
-            <FAQItem 
-              question="Is my client data safe?" 
-              answer="Yes, safer than cloud apps! You own the database. Your client list is stored on your own private server, ensuring you remain in control of GDPR compliance." 
+            <FAQItem
+              question="Is my client data safe?"
+              answer="Yes, safer than cloud apps! You own the database. Your client list is stored on your own private server, ensuring you remain in control of GDPR compliance."
             />
           </div>
         </div>
@@ -1554,17 +1601,17 @@ export default function App() {
               <span className="text-rose-500">Fully Automated Business</span>
             </h2>
             <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-              Stop renting your software. Start owning your success. <br/>
+              Stop renting your software. Start owning your success. <br />
               Join hundreds of smart salon owners today.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button 
+              <button
                 onClick={() => setActiveModal('purchase')}
                 className="bg-gradient-to-r from-rose-600 to-amber-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_30px_rgba(225,29,72,0.6)] transition-all transform hover:-translate-y-1"
               >
                 Buy Software Now - £1499
               </button>
-              <button 
+              <button
                 onClick={() => setActiveModal('scheduleDemo')}
                 className="bg-transparent border border-slate-600 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-800 transition-all"
               >
